@@ -1,122 +1,187 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
-          rel="noopener"
-          >babel</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router"
-          target="_blank"
-          rel="noopener"
-          >router</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
-          >Forum</a
-        >
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
-          >Community Chat</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-          >Twitter</a
-        >
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
-          >vue-router</a
-        >
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          rel="noopener"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
-          >vue-loader</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-          rel="noopener"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
+  <div>
+    <div>
+      <aside>
+        hello
+      </aside>
+    </div>
+    <div>
+      <main>
+        <div class="mainContent">
+          <TabMenu :model="items" />
+
+          <router-view />
+        </div>
+        <div class="p-grid">
+          <div class="p-col">
+            <Card>
+              <template slot="title">
+                Advanced Card
+              </template>
+              <template slot="content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Inventore sed consequuntur error repudiandae numquam deserunt
+              </template>
+            </Card>
+          </div>
+          <div class="p-col">
+            <Card>
+              <template slot="title">
+                Advanced Card
+              </template>
+              <template slot="content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Inventore sed consequuntur error repudiandae numquam deserunt
+              </template>
+            </Card>
+          </div>
+          <div class="p-col">
+            <Card>
+              <template slot="title">
+                Advanced Card
+              </template>
+              <template slot="content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Inventore sed consequuntur error repudiandae numquam deserunt
+              </template>
+            </Card>
+          </div>
+          <div class="p-col">
+            <Card>
+              <template slot="title">
+                Advanced Card
+              </template>
+              <template slot="content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Inventore sed consequuntur error repudiandae numquam deserunt
+              </template>
+            </Card>
+          </div>
+        </div>
+        <!-- chart view -->
+        <div class="p-grid nested-grid">
+          <div class="p-col-4">
+            <Card>
+              <template slot="content">
+                hello how are you doing?
+              </template>
+            </Card>
+          </div>
+          <div class="p-col-8">
+            <Card>
+              <template slot="content">
+                <h3>Line Styles</h3>
+                <Chart type="line" :data="lineStylesData" />
+              </template>
+            </Card>
+          </div>
+        </div>
+      </main>
+    </div>
   </div>
 </template>
 
 <script>
+import TabMenu from "primevue/tabmenu";
+import Card from "primevue/card";
+import Chart from "primevue/chart";
 export default {
   name: "HelloWorld",
-  props: {
-    msg: String
-  }
+
+  data() {
+    return {
+      items: [
+        { label: "Home", icon: "pi pi-fw pi-home", to: "/tabmenu" },
+        {
+          label: "Calendar",
+          icon: "pi pi-fw pi-calendar",
+          to: "/tabmenu/calendar",
+        },
+        { label: "Edit", icon: "pi pi-fw pi-pencil", to: "/tabmenu/edit" },
+        {
+          label: "Documentation",
+          icon: "pi pi-fw pi-file",
+          to: "/tabmenu/documentation",
+        },
+        { label: "Settings", icon: "pi pi-fw pi-cog", to: "/tabmenu/settings" },
+      ],
+      lineStylesData: {
+        labels: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+        ],
+        datasets: [
+          {
+            label: "First Dataset",
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: "#42A5F5",
+          },
+          {
+            label: "Second Dataset",
+            data: [28, 48, 40, 19, 86, 27, 90],
+            fill: false,
+            borderDash: [5, 5],
+            borderColor: "#66BB6A",
+          },
+          {
+            label: "Third Dataset",
+            data: [12, 51, 62, 33, 21, 62, 45],
+            fill: true,
+            borderColor: "#FFA726",
+            backgroundColor: "rgba(255,167,38,0.2)",
+          },
+        ],
+      },
+    };
+  },
+  components: {
+    TabMenu,
+    Card,
+    Chart,
+  },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
+html,
+body,
+main {
+  font-family: "Quicksand", sans-serif;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+div {
+  margin: 0;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+aside {
+  height: 100vh;
+  width: 280px;
+  border-style: solid;
+  border: 1px;
+  background-color: aquamarine;
+  margin: 0;
+  position: fixed;
 }
-a {
-  color: #42b983;
+main {
+  position: absolute;
+  left: 280px;
+  margin-right: 20px;
+  width: 76%;
+  margin-left: 20px;
+  background-color: rgba(223, 221, 221, 0.445);
+}
+.mainContent {
+  width: 100%;
+}
+.hm {
+  background-color: brown;
+}
+.hm1 {
+  background-color: rgb(40, 179, 93);
 }
 </style>
