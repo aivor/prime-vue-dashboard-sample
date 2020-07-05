@@ -2,7 +2,16 @@
   <div>
     <div>
       <aside>
-        hello
+        <div class="sidenav">
+          <img src="../assets/andy.jpg" class="Avatar" /><br />
+          <p>Andy Ivor</p>
+          <hr />
+
+          <a href=""><i class="pi pi-home"></i> HOME</a>
+          <a href=""><i class="pi pi-user"></i> PROFILE</a>
+          <a href=""><i class="pi pi-calendar-plus"></i> CALENDER</a>
+          <hr />
+        </div>
       </aside>
     </div>
     <div>
@@ -16,7 +25,7 @@
           <div class="p-col">
             <Card>
               <template slot="title">
-                Advanced Card
+                IOS development
               </template>
               <template slot="content">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -27,7 +36,7 @@
           <div class="p-col">
             <Card>
               <template slot="title">
-                Advanced Card
+                Android Dev
               </template>
               <template slot="content">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -38,7 +47,7 @@
           <div class="p-col">
             <Card>
               <template slot="title">
-                Advanced Card
+                Reports
               </template>
               <template slot="content">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -49,7 +58,7 @@
           <div class="p-col">
             <Card>
               <template slot="title">
-                Advanced Card
+                Web projects
               </template>
               <template slot="content">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -63,7 +72,7 @@
           <div class="p-col-4">
             <Card>
               <template slot="content">
-                hello how are you doing?
+                Getting to know how to effectively use primevue
               </template>
             </Card>
           </div>
@@ -160,20 +169,46 @@ div {
 }
 aside {
   height: 100vh;
-  width: 280px;
+  width: 230px;
   border-style: solid;
   border: 1px;
-  background-color: aquamarine;
+  background-color: #8c57e9;
   margin: 0;
   position: fixed;
+  color: #fff;
 }
+.sidenav a {
+  padding: 5px 8px 6px 0px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #fff;
+  display: block;
+  text-align: left;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.sidenav a:hover {
+  color: #f18ec4;
+}
+
 main {
   position: absolute;
-  left: 280px;
+  left: 230px;
   margin-right: 20px;
-  width: 76%;
+  width: 80%;
   margin-left: 20px;
   background-color: rgba(223, 221, 221, 0.445);
+}
+/*The avatar */
+.Avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
 }
 .mainContent {
   width: 100%;
