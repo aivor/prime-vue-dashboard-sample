@@ -7,15 +7,9 @@
           <br />
           <p>Andy Ivor</p>
 
-          <a href>
-            <i class="pi pi-home"></i> HOME
-          </a>
-          <a href>
-            <i class="pi pi-user"></i> PROFILE
-          </a>
-          <a href>
-            <i class="pi pi-calendar-plus"></i> CALENDER
-          </a>
+          <a href> <i class="pi pi-home"></i> HOME </a>
+          <a href> <i class="pi pi-user"></i> PROFILE </a>
+          <a href> <i class="pi pi-calendar-plus"></i> CALENDER </a>
         </div>
       </aside>
     </div>
@@ -89,7 +83,12 @@
             <Card>
               <template slot="title" class="txt-title">Comments</template>
               <template slot="content">
-                <Textarea v-model="value" :autoResize="true" rows="6" cols="50" />
+                <Textarea
+                  v-model="value"
+                  :autoResize="true"
+                  rows="6"
+                  cols="50"
+                />
                 <br />
                 <div class="bttns">
                   <Button label="Submit" @click="showSuccess" />
@@ -103,21 +102,39 @@
               </template>
             </Card>
           </div>
+          <div class="p-col-6">
+            <Card>
+              <template slot="title">
+                Calender
+              </template>
+              <template slot="content">
+                <FullCalendar :events="events" :options="options" />
+              </template>
+            </Card>
+          </div>
         </div>
         <Toast />
         <!-- Dialog -->
         <Dialog
           header="Confirmation"
           :visible.sync="displayConfirmation"
-          :style="{width:'350px'}"
+          :style="{ width: '350px' }"
           :modal="true"
         >
           <div class="confirmation-content">
-            <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
+            <i
+              class="pi pi-exclamation-triangle p-mr-3"
+              style="font-size: 2rem"
+            />
             <span>Are you sure you want to proceed?</span>
           </div>
           <template #footer>
-            <Button label="No" icon="pi pi-times" @click="closeConfirmation" class="p-button-text" />
+            <Button
+              label="No"
+              icon="pi pi-times"
+              @click="closeConfirmation"
+              class="p-button-text"
+            />
             <Button
               label="Yes"
               icon="pi pi-check"
@@ -140,6 +157,11 @@ import Textarea from "primevue/textarea";
 import Button from "primevue/button";
 import Toast from "primevue/toast";
 import Dialog from "primevue/dialog";
+import FullCalendar from "primevue/fullcalendar";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+
 export default {
   name: "HelloWorld",
 
@@ -154,24 +176,35 @@ export default {
           {
             data: [300, 50, 100],
             backgroundColor: ["#42A5F5", "#66BB6A", "#FFA726"],
-            hoverBackgroundColor: ["#64B5F6", "#81C784", "#FFB74D"]
-          }
-        ]
+            hoverBackgroundColor: ["#64B5F6", "#81C784", "#FFB74D"],
+          },
+        ],
       },
+      options: {
+        plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+        defaultDate: "2019-01-01",
+        header: {
+          left: "prev,next",
+          center: "title",
+          right: "dayGridMonth,timeGridWeek,timeGridDay",
+        },
+        editable: true,
+      },
+      events: null,
       items: [
         { label: "Home", icon: "pi pi-fw pi-home", to: "/" },
         {
           label: "Calendar",
           icon: "pi pi-fw pi-calendar",
-          to: "/tabmenu/calendar"
+          to: "/tabmenu/calendar",
         },
         { label: "Edit", icon: "pi pi-fw pi-pencil", to: "/tabmenu/edit" },
         {
           label: "Documentation",
           icon: "pi pi-fw pi-file",
-          to: "/tabmenu/documentation"
+          to: "/tabmenu/documentation",
         },
-        { label: "Settings", icon: "pi pi-fw pi-cog", to: "/tabmenu/settings" }
+        { label: "Settings", icon: "pi pi-fw pi-cog", to: "/tabmenu/settings" },
       ],
       lineStylesData: {
         labels: [
@@ -181,40 +214,42 @@ export default {
           "April",
           "May",
           "June",
-          "July"
+          "July",
         ],
         datasets: [
           {
             label: "First Dataset",
             data: [65, 59, 80, 81, 56, 55, 40],
             fill: false,
-            borderColor: "#42A5F5"
+            borderColor: "#42A5F5",
           },
           {
             label: "Second Dataset",
             data: [28, 48, 40, 19, 86, 27, 90],
             fill: false,
             borderDash: [5, 5],
-            borderColor: "#66BB6A"
+            borderColor: "#66BB6A",
           },
           {
             label: "Third Dataset",
             data: [12, 51, 62, 33, 21, 62, 45],
             fill: true,
             borderColor: "#FFA726",
-            backgroundColor: "rgba(255,167,38,0.2)"
-          }
-        ]
-      }
+            backgroundColor: "rgba(255,167,38,0.2)",
+          },
+        ],
+      },
     };
   },
+  eventService: null,
+
   methods: {
     showSuccess() {
       this.$toast.add({
         severity: "success",
         summary: "Success Message",
         detail: "Message Content",
-        life: 3000
+        life: 3000,
       });
     },
     openConfirmation() {
@@ -222,7 +257,7 @@ export default {
     },
     closeConfirmation() {
       this.displayConfirmation = false;
-    }
+    },
   },
   components: {
     TabMenu,
@@ -231,8 +266,9 @@ export default {
     Textarea,
     Button,
     Toast,
-    Dialog
-  }
+    Dialog,
+    FullCalendar,
+  },
 };
 </script>
 
