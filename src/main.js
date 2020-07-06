@@ -6,6 +6,8 @@ import "primevue/resources/primevue.css";
 import "primeicons/primeicons.css";
 import "primevue/resources/themes/md-light-deeppurple/theme.css";
 import "primeflex/primeflex.css";
+import ToastService from "primevue/toastservice";
+Vue.use(ToastService);
 
 Vue.config.productionTip = false;
 
